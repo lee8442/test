@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">앱 연습</string>
+    <string name="main_title">앱 연습</string>
+    <string name="login_title">로그인</string>
+    <string name="idLB">아이디</string>
+    <string name="pwLB">패스워드</string>
+    <string name="idHint">아이디를 입력하세요.</string>
+    <string name="pwHint">패스워드를 입력하세요.</string>
+    <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
+    <string name="signUp">회원가입</string>
+</resources>
