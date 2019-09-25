@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                //finish();
             }
         });
     }

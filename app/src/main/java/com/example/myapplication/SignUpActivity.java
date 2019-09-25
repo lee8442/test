@@ -14,7 +14,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        Button loginBtn = (Button) findViewById(R.id.loginBtn); // 로그아웃 버튼
+        Button loginBtn = (Button) findViewById(R.id.cancelBtn); // 로그아웃 버튼
 
         // event handler
         loginBtn.setOnClickListener(new OnClickListener() {
@@ -22,7 +22,8 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                //finish();
             }
         });
     }
