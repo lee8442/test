@@ -1,7 +1,6 @@
 package com.example.db;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -33,6 +32,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
+    public SQLiteDatabase getDb() {
+        return db;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table if not exists " + TABLE_NAME + " ("
@@ -48,40 +51,5 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
-
-    public void create() {
-        onCreate(db);
-        if(!isData()) {
-            String sql = "insert into " + TABLE_NAME + "(id, pw, name, number, address, gender) values('traveller', 'abc123', '홍길동', '01000000000', '서울', '남성');";
-            insertData(sql);
-        }
-    }
-
-    // 데이터의 존재 유무 확인
-    public boolean isData(){
-        boolean isData = false;
-        String sql = "select * from " + TABLE_NAME + ";";
-        Cursor result = db.rawQuery(sql, null);
-        // result(Cursor)객체가 비어있으면 false 리턴
-        if(result.moveToFirst()){
-            isData = true;
-        }
-        result.close();
-        return isData;
-    }
-
-    public void insertData(String sql) {
-        db.execSQL(sql);
-    }
-
-    public String selectData() {
-        String result = "";
-        String sql = "select * from " + TABLE_NAME + ";";
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToNext();
-        result = cursor.getString(2);
-        cursor.close();
-        return result;
     }
 }
