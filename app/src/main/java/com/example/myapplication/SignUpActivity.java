@@ -132,6 +132,12 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"회원가입이 취소되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onStop() {
+        saveData();
+        super.onStop();
+    }
+
     // 데이터 저장
     private void saveData() {
         SP.setAttribute(SignUpActivity.this,"SAVE_DATA", "true");
