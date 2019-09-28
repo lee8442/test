@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginVO = new loginVO(userId, userPw);
                 if(login_m.login(loginVO)) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("id", userId);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     Toast.makeText(getApplicationContext(),loginVO.getId() + "님 환영합니다. ",Toast.LENGTH_LONG).show();

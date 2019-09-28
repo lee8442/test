@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/main_title">
+            android:theme="@style/customToolbar"
+            android:name=".MainActivity">
         </activity>
         <activity
             android:name=".LoginActivity"

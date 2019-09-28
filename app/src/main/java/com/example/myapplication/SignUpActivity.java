@@ -19,7 +19,8 @@ public class SignUpActivity extends AppCompatActivity {
     private signUp_m signUp_m;
     private signUpVO signUpVO;
     private SharedPreference SP;
-    private boolean idCheckStatus = false;
+    private boolean idCheckStatus = false; // 아이디 중복 체크 상태값
+    private boolean signUpStatus = false; // 회원가입 성공 시 onStop() 함수에서 saveData()를 실행 안하기 위함
 
     private EditText idInput;
     private EditText pwInput;
@@ -99,7 +100,8 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(intent);
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         Toast.makeText(getApplicationContext(), "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
-                        SP.removeAllAttribute(SignUpActivity.this);
+                        SP.removeAllAttribute(SignUpActivity.this); // 회원가입 성공 시 저장된 데이터 삭제
+                        signUpStatus = true;
                     } else {
                         Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                     }
@@ -134,7 +136,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public void onStop() {
-        saveData();
+        if(!signUpStatus) {
+            saveData();
+        }
         super.onStop();
     }
 
