@@ -3,8 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private Button img4Btn;
     private Button img5Btn;
     private TextView petSort;
+
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         petSort = (TextView) findViewById(R.id.petSort);
 
         Intent intent = getIntent();
-        String id = intent.getExtras().getString("id"); // 로그인 유저의 아이디
+        id = intent.getExtras().getString("id"); // 로그인 유저의 아이디
         Log.i("mainAct", "login ID : " + id);
 
         // 툴바 생성
@@ -95,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Glide.with(MainActivity.this).load(R.drawable.img5).into(imgView);
                 petSort.setText("레오파드 게코 유니버스");
+            }
+        });
+
+        afterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
     }
